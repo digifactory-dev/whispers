@@ -69,7 +69,7 @@
   <button class="btn" onclick="startExperience()">Ecouter</button>
 </div>
 
-<audio id="bg-audio" loop></audio>
+<audio id="bg-audio" ></audio>
 
 <script>
   const params = new URLSearchParams(window.location.search);
@@ -94,7 +94,7 @@
     audioElement.play();
 
     const btn = document.querySelector(".btn");
-    btn.innerText = "Bienvenue";
+    btn.innerText = "🎶";
     btn.style.background = "#4CAF50";
     btn.style.color = "white";
   }

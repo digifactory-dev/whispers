@@ -66,23 +66,42 @@
 <body>
 
 <div class="container">
-  <img src="resources/logo.png" alt="Logo">
+  <img id="dynamic-logo" src="" alt="Logo">
   <button class="btn" onclick="startExperience()">Entrer</button>
 </div>
 
-<audio id="bg-audio" loop>
-  <source src="resources/default.mp3" type="audio/mpeg">
-</audio>
+<audio id="bg-audio" loop></audio>
 
 <script>
-function startExperience() {
-  const audio = document.getElementById("bg-audio");
-  audio.play();
+  // Lire les paramètres de l'URL
+  const params = new URLSearchParams(window.location.search);
 
-  document.querySelector(".btn").innerText = "Bienvenue";
-  document.querySelector(".btn").style.background = "#4CAF50";
-  document.querySelector(".btn").style.color = "white";
-}
+  const audioFile = params.get("audio");
+  const logoFile = params.get("logo");
+
+  const audioElement = document.getElementById("bg-audio");
+  const logoElement = document.getElementById("dynamic-logo");
+
+  // Dossier resources
+  const basePath = "resources/";
+
+  // Si paramètres présents
+  if (audioFile) {
+    audioElement.src = basePath + audioFile;
+  }
+
+  if (logoFile) {
+    logoElement.src = basePath + logoFile;
+  }
+
+  function startExperience() {
+    audioElement.play();
+
+    const btn = document.querySelector(".btn");
+    btn.innerText = "Bienvenue";
+    btn.style.background = "#4CAF50";
+    btn.style.color = "white";
+  }
 </script>
 
 </body>
